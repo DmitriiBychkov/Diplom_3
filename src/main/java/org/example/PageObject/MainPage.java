@@ -13,29 +13,41 @@ public class MainPage {
     //    Адрес страницы
     private final static String STELLAR_URL = "https://stellarburgers.nomoreparties.site/";
     //    Кнопка-Логотип "Stellar Burgers"
-    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a svg");
+//    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a svg");
+    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a > svg");
     //    Кнопка "Конструктор" в хедере
-    private final static By HEADER_CONSTRUCTOR_BUTTON = By.cssSelector(".//p[text()='Конструктор']");
+//    private final static By HEADER_CONSTRUCTOR_BUTTON = By.cssSelector(".//p[text()='Конструктор']");
+    private final static By HEADER_CONSTRUCTOR_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/ul/li[1]/a/p");
     //    Кнопка "Лента Заказов"
-    private final static By ORDERS_BUTTON = By.cssSelector(".//p[text()='Лента Заказов']");
+//    private final static By ORDERS_BUTTON = By.cssSelector(".//p[text()='Лента Заказов']");
+    private final static By ORDERS_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/ul/li[2]/a/p");
     //    Кнопка "Личный Кабинет"
-    private final static By ACCOUNT_BUTTON = By.cssSelector(".//p[text()='Личный Кабинет']");
+//    private final static By ACCOUNT_BUTTON = By.cssSelector(".//p[text()='Личный Кабинет']");
+    private final static By ACCOUNT_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/a/p");
     //    Кнопка "Войти в аккаунт" на главной
-    private final static By LOGIN_ACCOUNT_BUTTON = By.cssSelector(".//button[text()='Войти в аккаунт']");
+//    private final static By LOGIN_ACCOUNT_BUTTON = By.cssSelector(".//button[text()='Войти в аккаунт']");
+//    private final static By LOGIN_ACCOUNT_BUTTON = By.className("button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg");
+    private final static By LOGIN_ACCOUNT_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/section[2]/div/button");
     //    Кнопка вкладки "Соусы" в конструкторе
-    private final static By SAUCES_BUTTON = By.cssSelector(".//span[text()='Соусы']");
+//    private final static By SAUCES_BUTTON = By.cssSelector(".//span[text()='Соусы']");
+    private final static By SAUCES_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]/span");
     //    Кнопка вкладки "Начинки" в конструкторе
-    private final static By FILLINGS_BUTTON = By.cssSelector(".//span[text()='Начинки']");
+//    private final static By FILLINGS_BUTTON = By.cssSelector(".//span[text()='Начинки']");
+    private final static By FILLINGS_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]/span");
     //    Кнопка вкладки "Булки" в конструкторе
-    private final static By BUNS_BUTTON = By.cssSelector(".//span[text()='Булки']");
+//    private final static By BUNS_BUTTON = By.cssSelector(".//span[text()='Булки']");
+    private final static By BUNS_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[1]/span");
     //    Меню ингредиентов в конструкторе на главной
-    private final static By MENU = By.className("BurgerIngredients_ingredients__menuContainer__Xu3Mo");
+//    private final static By MENU = By.className("BurgerIngredients_ingredients__menuContainer__Xu3Mo");
+    private final static By MENU = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[2]");
     //    Последний ингредиент "Сыр с астероидной плесенью" в конструкторе на главной
-    private final static By CHEESE = By.cssSelector(".//p[text()='Сыр с астероидной плесенью']");
+//    private final static By CHEESE = By.cssSelector(".//p[text()='Сыр с астероидной плесенью']");
+    private final static By CHEESE = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[2]/ul[3]/a[9]/img");
     //    Кнопка вкладки ингредиентов в конструкторе не выделена
-    private final static By NO_SELECT_BUTTON = By.cssSelector(".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect']");
-    //    Кнопка вкладки ингредиентов в конструкторе выделена
-    private final static By SELECT_BUTTON = By.cssSelector(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']");
+//    private final static By NO_SELECT_BUTTON = By.cssSelector(".//div[@class='tab_tab__1SPyG  pt-4 pr-10 pb-4 pl-10 noselect']");
+//    private final static By NO_SELECT_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]");
+    //    Кнопка "Оформить заказ"
+    private final static By SEND_ORDER = By.xpath("//*[@id=\"root\"]/div/main/section[2]/div/button");
 
     private final WebDriver driver;
 
@@ -100,7 +112,7 @@ public class MainPage {
 
     // метод ожидания загрузки страницы (появление наличия меню ингредиентов)
     public void waitForLoadPage() {
-        new WebDriverWait(driver, Duration.ofSeconds(2))
+        new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(MENU));
     }
 
@@ -110,15 +122,15 @@ public class MainPage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    // метод проверки наличия выделения кнопки вкладки ингредиентов
-    public boolean isSelectButtonPresent() {
-        return driver.findElement(SELECT_BUTTON).isDisplayed();
+//     метод проверки наличия кнопки "Оформить заказ"
+    public boolean isSendOrderButtonPresent() {
+        return driver.findElement(SEND_ORDER).isDisplayed();
     }
 
     // метод проверки отсутствия выделения кнопки вкладки ингредиентов
-    public boolean isNoSelectButtonPresent() {
-        return driver.findElement(NO_SELECT_BUTTON).isDisplayed();
-    }
+//    public boolean isNoSelectButtonPresent() {
+//        return driver.findElement(NO_SELECT_BUTTON).isDisplayed();
+//    }
 //    // метод для получения текста ответа на вопрос "Сколько это стоит? И как оплатить?"
 //    public String priceText() {
 //        return driver.findElement(ANSWER_PRICE).getText();

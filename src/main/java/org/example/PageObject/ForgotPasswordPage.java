@@ -11,19 +11,26 @@ public class ForgotPasswordPage {
     //    Адрес страницы
     private final static String STELLAR_FORGOT_PASSWORD_URL = "https://stellarburgers.nomoreparties.site/forgot-password";
     //    Кнопка-Логотип "Stellar Burgers"
-    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a svg");
+//    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a svg");
+    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a > svg");
     //    Кнопка "Конструктор" в хедере
-    private final static By HEADER_CONSTRUCTOR_BUTTON = By.cssSelector(".//p[text()='Конструктор']");
+//    private final static By HEADER_CONSTRUCTOR_BUTTON = By.cssSelector(".//p[text()='Конструктор']");
+    private final static By HEADER_CONSTRUCTOR_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/ul/li[1]/a/p");
     //    Кнопка "Лента Заказов"
-    private final static By ORDERS_BUTTON = By.cssSelector(".//p[text()='Лента Заказов']");
+//    private final static By ORDERS_BUTTON = By.cssSelector(".//p[text()='Лента Заказов']");
+    private final static By ORDERS_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/ul/li[2]/a/p");
     //    Кнопка "Личный Кабинет"
-    private final static By ACCOUNT_BUTTON = By.cssSelector(".//p[text()='Личный Кабинет']");
+//    private final static By ACCOUNT_BUTTON = By.cssSelector(".//p[text()='Личный Кабинет']");
+    private final static By ACCOUNT_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/a/p");
     //    Поле "Email"
-    private final static By EMAIL_INPUT_FIELD = By.cssSelector(".//label[text()='Email']");
+//    private final static By EMAIL_INPUT_FIELD = By.cssSelector(".//label[text()='Email']");
+    private final static By EMAIL_INPUT_FIELD = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
     //    Кнопка "Войти"
-    private final static By ENTER_BUTTON = By.cssSelector(".//a[text()='Войти']");
+//    private final static By ENTER_BUTTON = By.cssSelector(".//a[text()='Войти']");
+    private final static By ENTER_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/div/p/a");
     //    Кнопка "Восстановить"
-    private final static By RECOVER_BUTTON = By.cssSelector(".//button[text()='Восстановить']");
+//    private final static By RECOVER_BUTTON = By.cssSelector(".//button[text()='Восстановить']");
+    private final static By RECOVER_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/form/button");
 
     private final WebDriver driver;
 
