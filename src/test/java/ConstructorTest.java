@@ -31,12 +31,12 @@ public class ConstructorTest {
     @Test
     @DisplayName("Проверка работы переходов по разделам конструктора ингредиентов")
     public void successfulSectionNavigation() {
-        objMainPage.waitClickFillings();
-        objMainPage.clickFillingsButton();//клик на "Начинки"
-        objMainPage.waitClickSauces();
-        objMainPage.clickSaucesButton();//клик на "Соусы"
-        objMainPage.waitClickBuns();
-        objMainPage.clickBunsButton();//клик на "Булки"
+        objMainPage.waitClickFillings();//вкладка "Начинки" кликабельна
+        objMainPage.clickFillingsButton();//клик на вкладку "Начинки"
+        objMainPage.waitClickSauces();//вкладка "Соусы" кликабельна
+        objMainPage.clickSaucesButton();//клик на вкладку "Соусы"
+        objMainPage.waitClickBuns();//вкладка "Булки" кликабельна
+        objMainPage.clickBunsButton();//клик на вкладку "Булки"
     }
 
     @After
