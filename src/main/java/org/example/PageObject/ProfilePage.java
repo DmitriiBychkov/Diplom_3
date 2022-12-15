@@ -11,50 +11,35 @@ public class ProfilePage {
     //    Адрес страницы
     private final static String STELLAR_PROFILE_URL = "https://stellarburgers.nomoreparties.site/account/profile";
     //    Кнопка-Логотип "Stellar Burgers"
-//    private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a svg");
     private final static By LOGO_BUTTON = By.cssSelector("#root > div > header > nav > div > a > svg");
     //    Кнопка "Конструктор" в хедере
-//    private final static By HEADER_CONSTRUCTOR_BUTTON = By.cssSelector(".//p[text()='Конструктор']");
     private final static By HEADER_CONSTRUCTOR_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/ul/li[1]/a/p");
     //    Кнопка "Лента Заказов"
-//    private final static By ORDERS_BUTTON = By.cssSelector(".//p[text()='Лента Заказов']");
     private final static By ORDERS_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/ul/li[2]/a/p");
     //    Кнопка "Личный Кабинет"
-//    private final static By ACCOUNT_BUTTON = By.cssSelector(".//p[text()='Личный Кабинет']");
     private final static By ACCOUNT_BUTTON = By.xpath("//*[@id=\"root\"]/div/header/nav/a/p");
     //    Поле "Имя"
-//    private final static By NAME_INPUT_FIELD = By.cssSelector(".//label[text()='Имя']");
     private final static By NAME_INPUT_FIELD = By.xpath("//*[@id=\"root\"]/div/main/div/div/div/ul/li[1]/div/div/input");
     //    Кнопка редактирования поля "Имя"
-//    private final static By NAME_EDIT_BUTTON = By.cssSelector("#root > div > main > div > div > div > ul > li:nth-child(1) svg");
     private final static By NAME_EDIT_BUTTON = By.cssSelector("#root > div > main > div > div > div > ul > li:nth-child(1) > div > div > div > svg");
     //    Поле "Логин"
-//    private final static By EMAIL_INPUT_FIELD = By.cssSelector(".//label[text()='Логин']");
     private final static By EMAIL_INPUT_FIELD = By.xpath("//*[@id=\"root\"]/div/main/div/div/div/ul/li[2]/div/div/input");
     //    Кнопка редактирования поля "Логин"
-//    private final static By LOGIN_EDIT_BUTTON = By.cssSelector("#root > div > main > div > div > div > ul > li:nth-child(2) svg");
     private final static By LOGIN_EDIT_BUTTON = By.cssSelector("#root > div > main > div > div > div > ul > li:nth-child(2) > div > div > div > svg");
     //    Поле "Пароль"
-//    private final static By PASSWORD_INPUT_FIELD = By.cssSelector(".//label[text()='Пароль']");
     private final static By PASSWORD_INPUT_FIELD = By.xpath("//*[@id=\"root\"]/div/main/div/div/div/ul/li[3]/div/div/input");
     //    Кнопка редактирования поля "Пароль"
-//    private final static By PASSWORD_EDIT_BUTTON = By.cssSelector("#root > div > main > div > div > div > ul > li:nth-child(3) svg");
     private final static By PASSWORD_EDIT_BUTTON = By.cssSelector("#root > div > main > div > div > div > ul > li:nth-child(3) > div > div > div > svg");
     //    Кнопка "Отмена"
-//    private final static By CANCEL_BUTTON = By.cssSelector(".//button[text()='Отмена']");
     private final static By CANCEL_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/div/div/div/button[1]");
     //    Кнопка "Сохранить"
-//    private final static By SAVE_BUTTON = By.cssSelector(".//button[text()='Сохранить']");
     private final static By SAVE_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/div/div/div/button[2]");
     //    Кнопка "Профиль"
-//    private final static By PROFILE_BUTTON = By.cssSelector(".//a[text()='Профиль']");
     private final static By PROFILE_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/nav/ul/li[1]/a");
     //    Кнопка "История заказов"
-//    private final static By LIST_ITEM_BUTTON = By.cssSelector(".//a[text()='История заказов']");
     private final static By LIST_ITEM_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/nav/ul/li[2]/a");
     //    Кнопка "Выход"
-//    private final static By EXIT_BUTTON = By.cssSelector(".//button[text()='Выход']");
-    private final static By EXIT_BUTTON = By.cssSelector("//*[@id=\"root\"]/div/main/div/nav/ul/li[3]/button");
+    private final static By EXIT_BUTTON = By.xpath("//*[@id=\"root\"]/div/main/div/nav/ul/li[3]/button");
 
     private final WebDriver driver;
 
@@ -95,7 +80,7 @@ public class ProfilePage {
 
     // метод ожидания загрузки страницы (появление наличия кнопки "Сохранить")
     public void waitForLoadPage() {
-        new WebDriverWait(driver, Duration.ofSeconds(2))
+        new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(SAVE_BUTTON));
     }
 
@@ -127,5 +112,10 @@ public class ProfilePage {
     public ProfilePage clickExitButton() {
         driver.findElement(EXIT_BUTTON).click();
         return this;
+    }
+
+    //     метод проверки наличия кнопки "История заказов"
+    public boolean isListItemButtonPresent() {
+        return driver.findElement(LIST_ITEM_BUTTON).isDisplayed();
     }
 }
