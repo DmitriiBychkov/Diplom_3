@@ -10,11 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.time.Duration;
-
-import static io.restassured.RestAssured.given;
-
-public class RegistrationTest {
+public class FailRegistrationTest {
     private MainPage objMainPage;
     private LoginPage objLoginPage;
     private RegisterPage objRegisterPage;
@@ -39,37 +35,19 @@ public class RegistrationTest {
     }
 
     @Test
-    @DisplayName("Проверка успешной регистрации пользователя")
-    public void SuccessfulRegistration() {
+    @DisplayName("Проверка ошибки для некорректного пароля меньше шести символов")
+    public void CheckPasswordErrorIfLessSixChars() {
         objMainPage.clickLoginAccountButton();//клик на "Войти в аккаунт"
         objLoginPage.clickRegisterButton();//клик на "Зарегистрироваться"
         objRegisterPage.inputName();//ввод имени
         objRegisterPage.inputEmail();//ввод почты
-        objRegisterPage.inputPasswordWithSixChars();//ввод пароля
+        objRegisterPage.inputPasswordWithFiveChars();//ввод пароля
         objRegisterPage.clickRegisterButton();//клик на "Зарегистрироваться"
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));//ожидание открытия страницы "Вход"
-        objLoginPage.waitForLoadPage();//ожидание появления окна "Вход"
-        objLoginPage.isLoginPageWindowOpen();//проверка открытия окна входа
+        objRegisterPage.isPasswordErrorPresent();//проверка появления ошибки
     }
 
     @After
     public void cleanUp() {
         driver.quit();
-        String accessToken = given()
-                .header("Content-Type", "application/json")
-                .log().all() // логируем реквест
-                .body("{\"email\": \"1test-data1@yandex.ru\", \"password\": \"123456\"}")
-                .when()
-                .post("https://stellarburgers.nomoreparties.site/api/auth/login")
-                .then()
-                .extract().path("accessToken").toString();
-        given()
-                .header("Content-Type", "application/json")
-                .header("Authorization", accessToken)
-                .log().all() // логируем реквест
-                .when()
-                .delete("https://stellarburgers.nomoreparties.site/api/auth/user")
-                .then()
-                .log().all(); // логируем респонс
     }
 }

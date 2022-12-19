@@ -12,9 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- версия Aspectj -->
         <aspectj.version>1.9.9.1</aspectj.version>
-        <!-- версия Allure -->
         <allure.version>2.20.1</allure.version>
     </properties>
 
@@ -22,7 +20,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.6.0</version>
+            <version>4.7.1</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -35,33 +33,31 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.rest-assured</groupId>-->
-<!--            <artifactId>rest-assured</artifactId>-->
-<!--            <version>5.2.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.google.code.gson</groupId>-->
-<!--            <artifactId>gson</artifactId>-->
-<!--            <version>2.10</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-<!--            <artifactId>jackson-databind</artifactId>-->
-<!--            <version>2.14.0</version>-->
-<!--        </dependency>-->
-        <!-- модуль взаимодействия Allure и Junit -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.14.0</version>
+        </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
             <version>${allure.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            &lt;!&ndash; модуль взаимодействия Allure и RestAssured &ndash;&gt;-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-rest-assured</artifactId>-->
-<!--            <version>${allure.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -89,14 +85,12 @@
                         </properties>
                         <systemProperties>
                             <property>
-                                <!-- папка, в которую будут генерироваться отчёты Allure -->
                                 <name>allure.results.directory</name>
                                 <value>${project.build.directory}/allure-results</value>
                             </property>
                         </systemProperties>
                     </configuration>
                 </plugin>
-                <!-- подключение плагина allure-maven для вызова функций Allure с помощью Maven -->
                 <plugin>
                     <groupId>io.qameta.allure</groupId>
                     <artifactId>allure-maven</artifactId>
